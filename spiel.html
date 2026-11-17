@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><script>if(window.parent===window)location.replace("./");</script><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#314c35"><title>Wertekompass BSH · Schulwelt</title><link rel="stylesheet" href="style.css?v=bsh-basketball-1"></head>
+<body><div id="game" data-view="start">
+<section id="world" aria-label="Schulwelt" aria-hidden="true" inert>
+<div id="world-camera">
+<img class="background" src="assets/schulwelt_bsh.png" alt="Illustrierter Hof der Berufsschule Hephata mit Fahrradunterstand, Sitzbank, Hochbeet, Basketballkorb und Werteboard." draggable="false">
+<button id="bench-entry" class="world-action" type="button" aria-label="Bank streichen" disabled><svg viewBox="0 0 400 280" aria-hidden="true"><g class="done-badge" transform="translate(320 35)"><circle r="25"/><path d="m-12 0 8 9 17-19"/></g></svg></button>
+<button id="garden-entry" class="world-action" type="button" aria-label="Garten bepflanzen" disabled><svg viewBox="0 0 400 280" aria-hidden="true"><g class="done-badge" transform="translate(320 35)"><circle r="25"/><path d="m-12 0 8 9 17-19"/></g></svg></button>
+<button id="muell-entry" class="world-action" type="button" aria-label="Müll sortieren" disabled><svg viewBox="0 0 400 280" aria-hidden="true"><g class="done-badge" transform="translate(320 35)"><circle r="25"/><path d="m-12 0 8 9 17-19"/></g></svg></button>
+<button id="repair-entry" class="world-action" type="button" aria-label="Metallbau" disabled><svg viewBox="0 0 400 280" aria-hidden="true"><g class="done-badge" transform="translate(320 35)"><circle r="25"/><path d="m-12 0 8 9 17-19"/></g></svg></button>
+<button id="basketball-entry" class="world-action" type="button" aria-label="Basketball spielen" disabled><svg viewBox="0 0 400 280" aria-hidden="true"><g class="done-badge" transform="translate(320 35)"><circle r="25"/><path d="m-12 0 8 9 17-19"/></g></svg></button>
+<button id="board-entry" type="button" aria-label="Werteboard öffnen" hidden></button>
+<svg id="world-garden-detail" viewBox="0 0 1675 939" aria-hidden="true"></svg>
+<svg class="world-cues" viewBox="0 0 1675 939" aria-hidden="true" focusable="false">
+ <g data-cue="muell" transform="translate(207 333)">
+  <circle class="cue-shimmer" r="34" fill="none"/>
+ </g>
+ <g data-cue="repair" transform="translate(414 338)">
+  <circle class="cue-shimmer" r="35" fill="none"/>
+ </g>
+ <g data-cue="bench" transform="translate(968 490)">
+  <circle class="cue-shimmer" r="40" fill="none"/>
+ </g>
+ <g data-cue="garden" transform="translate(1340 679)">
+  <circle class="cue-shimmer" r="44" fill="none"/>
+ </g>
+ <g data-cue="basketball" transform="translate(1543 309)">
+  <circle class="cue-shimmer" r="37" fill="none"/>
+ </g>
+ <defs>
+  <path id="bsh-board-outline" d="M186 567 C208 522 244 504 299 515 C322 519 325 538 361 529 C407 519 421 498 460 514 C487 524 499 537 530 523 C554 511 584 500 605 514 C624 525 635 508 655 508 C689 508 711 543 705 580 C703 600 691 611 699 632 C712 653 719 672 714 702 C711 724 717 745 709 763 C697 793 663 793 634 793 C604 793 592 812 564 805 C530 791 510 807 481 818 C438 836 404 832 381 820 C354 806 335 812 307 822 C281 834 257 842 230 838 C201 834 186 819 187 790 C188 761 199 732 195 712 C188 683 194 667 195 640 C194 616 172 591 186 567 Z"/>
+ </defs>
+ <g class="bsh-board-glow">
+  <use href="#bsh-board-outline" class="bsh-board-halo"/>
+  <use href="#bsh-board-outline" class="bsh-board-edge"/>
+ </g>
+ <!-- The hand still points at the printed speech bubble, not the centre of the contour. -->
+ <circle data-cue="board" cx="691" cy="686" r="40" fill="none"/>
+</svg>
+</div>
+</section>
+<main id="scene" aria-label="Bank streichen" aria-busy="true" aria-hidden="true" inert>
+<img class="background" src="assets/bank-bsh/hintergrund.png" alt="Holzbank mit Metallgestell auf dem Schulhof der Berufsschule." draggable="false">
+<canvas id="paint" aria-label="Mit dem Finger die Holzbank streichen"></canvas>
+<div id="tools" role="group" aria-label="Malfarben und Pinsel"></div>
+<canvas id="progress" width="320" height="80" role="progressbar" aria-label="Gestrichene Holzfläche" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></canvas>
+<div id="error" role="alert" hidden></div>
+</main><section id="garden-scene" aria-label="Garten bepflanzen" aria-busy="true" aria-hidden="true" inert>
+<img class="background" src="assets/garden-bsh/hochbeet.png" alt="Hochbeet der Berufsschule mit Gemüse, einer Gartenschaufel und einer Gießkanne." draggable="false">
+<div class="garden-error" role="alert" hidden></div>
+</section>
+<section id="muell-scene" aria-label="Müll sortieren" aria-hidden="true" aria-busy="true" inert>
+<img class="background" alt="Metallischer Fahrradunterstand mit drei Mülltonnen links und Fahrrädern rechts." draggable="false">
+<svg class="waste-floor" viewBox="0 0 1448 1086" aria-hidden="true"></svg>
+<div class="waste-success-light" aria-hidden="true"></div>
+<div class="garden-error" role="alert" hidden></div>
+</section>
+<section id="repair-scene" aria-label="Metallbau" aria-hidden="true" aria-busy="true" inert data-phase="choose">
+<img class="background" src="assets/metallbau/wertekompass_bsh_metallbau_hintergrund.png" alt="Metallpfosten mit Schraubplatte am Fahrradunterstand." draggable="false">
+<svg class="repair-art" viewBox="0 0 1672 941" aria-hidden="true"></svg>
+<button class="repair-control" data-trigger type="button" aria-label="Auslöser gedrückt halten" aria-pressed="false" disabled></button>
+<div class="garden-error" role="alert" hidden></div>
+</section>
+<section id="basketball-scene" aria-label="Basketball spielen" aria-hidden="true" aria-busy="true" inert data-phase="idle">
+ <div class="basketball-field">
+  <img class="background" alt="Basketballplatz mit Korb auf dem Schulhof der Berufsschule." draggable="false">
+  <div class="basketball-shadow" aria-hidden="true"></div>
+  <button class="basketball-ball" type="button" aria-label="Basketball zum Korb wischen"></button>
+  <svg class="basketball-front" viewBox="0 0 1448 1086" aria-hidden="true"></svg>
+ </div>
+ <div class="garden-error" role="alert" hidden></div>
+</section>
+<section id="start-screen" aria-label="Wertekompass starten">
+ <button id="start-button" type="button">Starten</button>
+</section>
+<section id="values-board" aria-labelledby="board-heading" tabindex="-1" hidden>
+ <div class="board-paper">
+  <h1 id="board-heading">Frage des Monats</h1>
+  <div id="board-question">
+   <p>Wenn du was an dieser Schule verändern könntest, was wäre das?</p>
+   <p>Male oder schreibe es auf.</p>
+  </div>
+ </div>
+</section>
+<audio id="board-audio" preload="none" src="audio/spur_werteboard.mp3" hidden></audio>
+<button id="frage-anhoeren" type="button" aria-label="Frage des Monats anhören" hidden>
+ <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 9v6h4l5 4V5L7 9H3Z" fill="currentColor"/><path d="M15 9a4 4 0 0 1 0 6m2.5-8a7 7 0 0 1 0 10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+</button>
+</div><script type="module" src="world.js?v=bsh-release-1"></script></body></html>

@@ -1,0 +1,15 @@
+{
+  "coordinateSpace": {"width":1448,"height":1086},
+  "reference":"fahrradunterstand_mit_muelltrennung.png",
+  "background":"fahrradunterstand_retusche.png",
+  "items":[
+    {"id":"papier","label":"Zerknülltes Papier","target":"papier","start":{"x":351,"y":783}},
+    {"id":"verpackung","label":"Snackverpackung","target":"verpackung","start":{"x":583,"y":789}},
+    {"id":"rest","label":"Kaputter Kugelschreiber","target":"rest","start":{"x":900,"y":815}}
+  ],
+  "bins":[
+    {"id":"papier","name":"Papier","region":{"x":287,"y":422,"width":180,"height":331}},
+    {"id":"verpackung","name":"Verpackungen","region":{"x":467,"y":422,"width":176,"height":313}},
+    {"id":"rest","name":"Restmüll","region":{"x":643,"y":422,"width":177,"height":300}}
+  ]
+}

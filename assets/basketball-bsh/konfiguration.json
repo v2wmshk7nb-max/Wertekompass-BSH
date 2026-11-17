@@ -1,0 +1,24 @@
+{
+  "referenceSize": {"width": 1448, "height": 1086},
+  "assets": {
+    "sceneBackground": "court-ohne-ball.png",
+    "spriteSource": "court-original.png"
+  },
+  "anchorPoints": {
+    "ballStartCenter": {"x": 332, "y": 925},
+    "hoopCenter": {"x": 1105, "y": 266},
+    "hoopNetBottom": {"x": 1109, "y": 387},
+    "landing": {"x": 1138, "y": 759}
+  },
+  "sprites": {
+    "ball": {"width": 246, "radiusApproxPx": 123},
+    "shadow": {"width": 285}
+  },
+  "interaction": {
+    "minGesturePxAtReferenceWidth": 48,
+    "suggestedMaxGesturePxAtReferenceWidth": 260,
+    "assistAfterMisses": 3,
+    "maxMissesBeforeGuaranteedAssist": 5,
+    "hintSwipe": {"dx": 175, "dy": -155}
+  }
+}
